@@ -1,0 +1,41 @@
+version: api.keploy.io/v1beta1
+kind: Http
+name: test-1
+spec:
+    metadata: {}
+    req:
+        method: POST
+        proto_major: 1
+        proto_minor: 1
+        url: http://localhost:8080/todos
+        header:
+            Accept: '*/*'
+            Content-Length: "47"
+            Content-Type: application/x-www-form-urlencoded
+            Host: localhost:8080
+            User-Agent: curl/7.81.0
+        body: '{"name": "a", "title": "foo", "status": "todo"}'
+        timestamp: 2024-03-14T23:15:46.970852883Z
+    resp:
+        status_code: 201
+        header:
+            Content-Length: "0"
+            Date: Thu, 14 Mar 2024 23:15:46 GMT
+        body: ""
+        status_message: Created
+        proto_major: 0
+        proto_minor: 0
+        timestamp: 2024-03-14T23:15:48.992347923Z
+    objects: []
+    assertions:
+        noise:
+            header.Date: []
+    created: 1710458148
+curl: |-
+    curl --request POST \
+      --url http://localhost:8080/todos \
+      --header 'Accept: */*' \
+      --header 'Content-Type: application/x-www-form-urlencoded' \
+      --header 'Host: localhost:8080' \
+      --header 'User-Agent: curl/7.81.0' \
+      --data '{"name": "a", "title": "foo", "status": "todo"}'

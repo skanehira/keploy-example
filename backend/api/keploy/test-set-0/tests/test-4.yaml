@@ -1,0 +1,44 @@
+version: api.keploy.io/v1beta1
+kind: Http
+name: test-4
+spec:
+    metadata: {}
+    req:
+        method: POST
+        proto_major: 1
+        proto_minor: 1
+        url: http://localhost:8080/todos
+        header:
+            Accept: '*/*'
+            Content-Length: "47"
+            Content-Type: application/x-www-form-urlencoded
+            Host: localhost:8080
+            User-Agent: curl/7.81.0
+        body: '{"name": "a", "title": "foo", "status": "todo"}'
+        timestamp: 2024-03-14T23:16:01.859164686Z
+    resp:
+        status_code: 500
+        header:
+            Content-Length: "26"
+            Content-Type: text/plain; charset=utf-8
+            Date: Thu, 14 Mar 2024 23:16:06 GMT
+            X-Content-Type-Options: nosniff
+        body: |
+            context deadline exceeded
+        status_message: Internal Server Error
+        proto_major: 0
+        proto_minor: 0
+        timestamp: 2024-03-14T23:16:08.912494945Z
+    objects: []
+    assertions:
+        noise:
+            header.Date: []
+    created: 1710458168
+curl: |-
+    curl --request POST \
+      --url http://localhost:8080/todos \
+      --header 'Content-Type: application/x-www-form-urlencoded' \
+      --header 'Host: localhost:8080' \
+      --header 'User-Agent: curl/7.81.0' \
+      --header 'Accept: */*' \
+      --data '{"name": "a", "title": "foo", "status": "todo"}'
